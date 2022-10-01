@@ -4,13 +4,17 @@ const ListadoGastos = ( {gastos} ) => {
 
     return (
         <div className="listado-gastos contenedor">
-            <h2>{gastos.length ? <p>Desde Listado de gastos</p> : null}</h2>
-            {gastos.map(gasto => (
-                <Gasto 
-                    key={gasto.id}
-                    gasto={gasto}
-                />
-            ))}
+            {gastos.length ? (
+                gastos.map(gasto => (
+                    <Gasto 
+                        key={gasto.id}
+                        gasto={gasto}
+                    />
+                ))
+            ): (
+                <h2>No hay gastos aún</h2>
+            )}
+            
         </div>
     )
 }
