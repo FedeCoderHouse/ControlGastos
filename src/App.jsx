@@ -17,6 +17,7 @@ function App() {
   const [gastos, setGastos] = useState([]);
 
   const [gastoEditar, setGastoEditar] = useState({});
+  
 
   useEffect(() => {
     if(Object.keys(gastoEditar).length > 0){
@@ -46,6 +47,7 @@ function App() {
         }
       })
       setGastos(gastosActualizados);
+      setGastoEditar({})
     } else {
       // Nuevo Gasto
       gasto.id = generarId();
@@ -60,7 +62,10 @@ function App() {
     }, 450);
   }
 
-  
+  const eliminarGasto = (idEliminar) => {
+    const nuevoArray = gastos.filter((gasto) => gasto.id != idEliminar)
+    setGastos(nuevoArray);
+  }
 
   return (
     <div className={modal ? "fijar" : ""}>
@@ -78,6 +83,7 @@ function App() {
               <ListadoGastos 
                 gastos={gastos}
                 setGastoEditar={setGastoEditar}
+                eliminarGasto={eliminarGasto}
               />
             </main>
             <div className='nuevo-gasto'>
