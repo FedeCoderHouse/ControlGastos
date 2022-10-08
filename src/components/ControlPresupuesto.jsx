@@ -51,8 +51,8 @@ const ControlPresupuesto = ( {presupuesto, gastos} ) => {
                         // How long animation takes to go from one percentage to another, in seconds
                         pathTransitionDuration: 0.5,
                         // Colors
-                        pathColor: `rgba(59, 130, 246, ${porcentaje / 100})`,
-                        textColor: 'rgb(59, 130, 246)',
+                        pathColor: porcentaje > 100 ? "#DC2626" :`rgba(59, 130, 246, ${porcentaje / 100})`,
+                        textColor: porcentaje > 100 ? "#DC2626" :'rgb(59, 130, 246)',
                         trailColor: '#d6d6d6',
                         backgroundColor: '#3e98c7',
                       })}
@@ -62,7 +62,7 @@ const ControlPresupuesto = ( {presupuesto, gastos} ) => {
                 <p>
                     <span>Presupuesto: </span>{formatearCantidad(presupuesto)}
                 </p>
-                <p>
+                <p className={disponible < 0 ? "negativo" : ""}>
                     <span>Disponible: </span>{formatearCantidad(disponible)}
                 </p>
                 <p>
